@@ -1,0 +1,228 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.basic-container {
+  padding: 30px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.mat-form-field-underline{
+  background-color:#000 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #79d3d1;
+}
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #79d3d1;
+}
+
+.mat-flat-button, .mat-raised-button, .mat-fab, .mat-mini-fab{
+  color: white !important;
+  background-color: #1d134c;
+}
+
+.mat-divider{
+  border-top-color: white;
+}
+
+@mixin a-tag {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 20px;
+
+  .mat-icon{
+    margin-right: 10px;
+  }
+}
+
+@mixin route-class {
+  color: white;
+  @include margin-left();
+  a{
+    @include a-tag()
+  }
+}
+
+@mixin margin-left{
+  margin-left: 30px;
+}
+@mixin margin-right{
+  margin-right: 30px;
+}
+
+.routeClass{
+  @include route-class()
+}
+
+.mat-h2, .mat-title, .mat-typography h2{
+  margin: 0;
+}
+
+@mixin buttons{
+  min-height: 48px;
+  color: white;
+}
+
+button {
+  @include buttons()
+}
+
+@mixin table-row-a-tag{
+  cursor: pointer;
+  height: 24px;
+  width: 18px;
+  display: inline-flex;
+
+  mat-icon{
+    height: 24px;
+    width: 18px;
+    color: black;
+  }
+}
+
+@mixin table-row{
+  tr{
+    .rowIcons{
+      a{
+        @include table-row-a-tag()
+      }
+      .trash{
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+@mixin table-body{
+  tbody{
+    @include table-row()
+  }
+}
+
+.mat-table{
+  width: 100%;
+  @include table-body()
+}
+
+.mat-dialog-container{
+  border-radius: 0 !important;
+  min-width: 800px;
+  padding: 0 !important;
+}
+
+.mat-stroked-button{
+  border: 0 !important;
+}
+
+@mixin header{
+  padding: 24px;
+  background: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editHeading{
+  @include header()
+}
+
+@mixin grid-template{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+.basic-container{
+  .formInputs{
+    .info{
+      @include grid-template()
+    }
+  }
+}
+
+h5{
+  color: gray;
+}
+
+@mixin margin-top{
+  margin-top: 20px;
+}
+
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  @include margin-top();
+
+  .delete{
+    display: flex;
+    align-items: center;
+  }
+}
+
+.overview{
+  min-height: 100vh;
+  display: flex;
+  .sideBar{
+    min-width: 240px;
+    width: 240px;
+    min-height: 100vh;
+    background: linear-gradient(50deg, #5F00D8, #B200F1 100%);
+
+    .logoIcon{
+      fill: rgba(255, 255, 255, 0.8);
+      height: 56px;
+      width: 56px;
+      @include margin-top();
+      @include margin-left();
+    }
+
+    .divider{
+      @include margin-top();
+      display: flex;
+    }
+
+    .routes{
+      @include margin-top();
+    }
+
+    .logoutRoute{
+      position: absolute;
+      top: calc(100vh - 80px);
+    }
+
+    .icon{
+      fill: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .overviewContainer {
+    width: 100%;
+
+    .header{
+      background: whitesmoke;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      padding-left: 40px;
+      padding-right: 40px;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .mat-elevation-z8{
+      @include margin-left();
+      @include margin-right();
+    }
+  }
+}

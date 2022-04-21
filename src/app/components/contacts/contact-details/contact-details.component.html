@@ -1,0 +1,44 @@
+<section class="editHeading">
+  <h2>Contact details</h2>
+  <button mat-stroked-button (click)="close()"><mat-icon svgIcon="cross"></mat-icon></button>
+</section>
+<section class="basic-container">
+  <div class="formInputs">
+    <h3>Basic info</h3>
+    <div class="info">
+      <div class="detailsField">
+        <h5>Name</h5>
+        <span>{{currentContact.name}}</span>
+      </div>
+
+      <div class="detailsField">
+        <h5>Last name</h5>
+        <span>{{currentContact.lastName}}</span>
+      </div>
+
+      <div class="detailsField">
+        <h5>Birthday</h5>
+        <span>{{currentContact.birthday | date: "dd.MM.yyyy"}}</span>
+      </div>
+    </div>
+
+    <h3>Contact info</h3>
+    <div class="info">
+      <div class="detailsField">
+        <h5>Type</h5>
+        <span>{{currentContact.type}}</span>
+      </div>
+
+      <div class="detailsField">
+        <h5>{{currentContact.type}}</h5>
+        <span>{{currentContact.value}}</span>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="delete" mat-flat-button (click)="delete()"><mat-icon svgIcon="trash"></mat-icon>Delete contact</button>
+      <button mat-flat-button (click)="update()">Edit contact</button>
+    </div>
+
+  </div>
+</section>

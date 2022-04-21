@@ -1,0 +1,13 @@
+.detailsField{
+  margin-bottom: 36px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  .delete{
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,20 @@
+<div class="overview">
+  <app-side-bar></app-side-bar>
+  <div class="overviewContainer">
+    <section class="header">
+      <h2>Directory</h2>
+    </section>
+    <div class="favoriteCards">
+      <mat-card *ngFor="let fav of contacts" class="card">
+        <div>
+          {{fav.name}} {{fav.lastName}}
+        </div>
+        <div>
+          <mat-icon svgIcon="trash" (click)="deleteContact(fav.key || '')"></mat-icon>
+          <mat-icon svgIcon="pencil" (click)="editContact(fav)"></mat-icon>
+          <mat-icon (click)="addToFavorites(fav,favorites)" [svgIcon]="checkIfFavorite(fav)"></mat-icon>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

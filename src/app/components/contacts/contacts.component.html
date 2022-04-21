@@ -1,0 +1,71 @@
+<div class="overview">
+  <app-side-bar></app-side-bar>
+  <div class="overviewContainer">
+    <section class="header">
+      <h2>Address book</h2>
+
+      <button mat-raised-button (click)="addNewContact()">Add</button>
+    </section>
+
+    <section class="search">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input (keyup)="retrieveFilteredContacts()" type="text" matInput [formControl]="searchFormControl">
+        <mat-icon svgIcon="search" matSuffix></mat-icon>
+      </mat-form-field>
+    </section>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort #empTbSort="matSort">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last name </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthday">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Birthday </th>
+          <td mat-cell *matCellDef="let element"> {{element.birthday | date: 'dd.MM.yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
+          <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td class="rowIcons" mat-cell *matCellDef="let element">
+            <a class="trash" (click)="delete(element)"><mat-icon svgIcon="trash"></mat-icon></a>
+            <a class="edit" [routerLink]="['/contacts/'+element.key]"><mat-icon svgIcon="pencil"></mat-icon></a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="favorites">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td class="rowIcons" mat-cell *matCellDef="let element">
+            <a class="edit" (click)="addToFavorites(element, favorites)"><mat-icon [svgIcon]="checkIfFavorite(element)"></mat-icon></a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons>
+      </mat-paginator>
+    </div>
+
+
+  </div>
+</div>

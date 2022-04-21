@@ -1,0 +1,16 @@
+<div class="sideBar">
+  <mat-icon class="logoIcon" svgIcon="address-book"></mat-icon>
+  <mat-divider class="divider"></mat-divider>
+
+  <section class="routes routeClass">
+    <a [routerLink]="['/contacts']"><mat-icon class="icon" svgIcon="form"></mat-icon>Contacts</a>
+    <a [routerLink]="['/contacts/favorites']"><mat-icon class="icon" svgIcon="star"></mat-icon>Favorites</a>
+    <a [routerLink]="['/directory']"><mat-icon class="icon" svgIcon="address-book"></mat-icon>Directory</a>
+
+  </section>
+
+  <section class="logoutRoute routeClass">
+    <a (click)="logout()"><mat-icon class="icon" svgIcon="sign-out"></mat-icon>Logout</a>
+  </section>
+
+</div>

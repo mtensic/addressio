@@ -1,0 +1,65 @@
+<section class="editHeading">
+  <h2>Edit contact</h2>
+  <button mat-stroked-button (click)="close()"><mat-icon svgIcon="cross"></mat-icon></button>
+</section>
+<section class="basic-container">
+  <form [formGroup]="contactInfo" class="formInputs">
+    <h4>Basic info</h4>
+    <div class="info">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" required matInput formControlName="name" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="contactInfo.hasError('name') && !contactInfo.hasError('required')">
+          Please enter your name
+        </mat-error>
+        <mat-error *ngIf="contactInfo.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input type="text" required matInput formControlName="lastName" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="contactInfo.hasError('lastName') && !contactInfo.hasError('required')">
+          Please enter your last name
+        </mat-error>
+        <mat-error *ngIf="contactInfo.hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="birthday" appearance="outline">
+        <input matInput (click)="picker.open()" readonly [matDatepicker]="picker" [max]="maxDate" formControlName="birthday">
+        <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <span (click)="picker.open()" matSuffix><mat-icon svgIcon="pencil"></mat-icon></span>
+      </mat-form-field>
+
+    </div>
+
+    <h4>Contact info</h4>
+    <div class="info">
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Value</mat-label>
+        <input type="text" required matInput formControlName="value" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="contactInfo.hasError('value') && !contactInfo.hasError('required')">
+          Please enter your name
+        </mat-error>
+        <mat-error *ngIf="contactInfo.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button mat-flat-button (click)="update()">Update</button>
+  </form>
+</section>

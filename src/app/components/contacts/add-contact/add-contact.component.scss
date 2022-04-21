@@ -1,0 +1,30 @@
+.newUsers{
+  margin-bottom: 20px;
+}
+
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+a{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  mat-icon{
+    margin-right: 5px;
+  }
+}
+
+.line{
+  border-top-color: gray;
+  margin-bottom: 10px;
+}
+
+.userInformation{
+  .remove{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

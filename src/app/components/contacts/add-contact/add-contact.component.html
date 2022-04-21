@@ -1,0 +1,96 @@
+<section class="editHeading">
+  <h2>Add contact</h2>
+  <button mat-stroked-button (click)="close()"><mat-icon svgIcon="cross"></mat-icon></button>
+</section>
+<section class="basic-container">
+  <div class="newUsers">
+    <mat-expansion-panel *ngFor="let co of newContacts" (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{co.name + ' ' + co.lastName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{co.value}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider class="line"></mat-divider>
+      <div class="userInformation">
+        <p><b>Name:</b> {{co.name}}</p>
+        <p><b>Last name:</b> {{co.lastName}}</p>
+        <p><b>Birthdate:</b> {{co.birthday | date: 'dd.MM.YYYY'}}</p>
+        <b>{{co.type}}</b> {{co.value}}
+        <div class="remove">
+          <a (click)="removeContactFromList(co)">
+            <mat-icon svgIcon="trash"></mat-icon> Remove</a>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+  <form [formGroup]="contactInfo" class="formInputs">
+    <h4>Basic info</h4>
+    <div class="info">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" required matInput formControlName="name" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="contactInfo.hasError('name') && !contactInfo.hasError('required')">
+          Please enter your name
+        </mat-error>
+        <mat-error *ngIf="contactInfo.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input type="text" required matInput formControlName="lastName" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="contactInfo.hasError('lastName') && !contactInfo.hasError('required')">
+          Please enter your last name
+        </mat-error>
+        <mat-error *ngIf="contactInfo.hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="birthday" appearance="outline">
+        <input matInput (click)="picker.open()" readonly [matDatepicker]="picker" [max]="maxDate" formControlName="birthday">
+        <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <span (click)="picker.open()" matSuffix><mat-icon svgIcon="pencil"></mat-icon></span>
+      </mat-form-field>
+
+    </div>
+
+    <h4>Contact info</h4>
+    <div class="info">
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Value</mat-label>
+        <input type="text" required matInput formControlName="value" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="contactInfo.hasError('value') && !contactInfo.hasError('required')">
+          Please enter your name
+        </mat-error>
+        <mat-error *ngIf="contactInfo.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <section class="buttons">
+      <a [class.disabled]="contactInfo.invalid ? true: null" (click)="addToContactList()">
+        <mat-icon svgIcon="user-add"></mat-icon> Add another</a>
+      <button [disabled]="contactInfo.invalid && !(newContacts.length > 0)" mat-flat-button (click)="create()">Create contact</button>
+    </section>
+  </form>
+</section>
